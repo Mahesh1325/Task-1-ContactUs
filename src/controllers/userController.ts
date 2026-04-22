@@ -1,16 +1,24 @@
-import { createUser } from "@/services/userService";
 import { User } from "@/models/user";
-
-
+import { createUser } from "@/services/userService";
 
 export const adduser = async (body: User) => {
-    const {name, email, age} = body;
+  const {
+    first_name,
+    last_name,
+    email,
+    mobile,
+    city,
+    age
+  } = body;
 
-    if(!name || !email){
-        throw new Error("Name and Email are Mandatory");
-    }
+  const result = await createUser({
+    first_name,
+    last_name,
+    email,
+    mobile,
+    city,
+    age
+  });
 
-    return await createUser ({name, email, age});
-}
-
-
+  return result;
+};
