@@ -1,9 +1,9 @@
 "use client";
 
-import { Input } from "./ui/input";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Label } from "./ui/label";
-import { Button } from "./ui/button";
+import { Input } from "../ui/input";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { Label } from "../ui/label";
+import { Button } from "../ui/button";
 import { createUser } from "@/lib/api/user";
 import { useDispatch } from "react-redux";
 import { addUser } from "@/store/redux/userSlice.";
@@ -11,7 +11,6 @@ import { AppDispatch } from "@/store/redux/store";
 import { useUserDraftStore } from "@/store/zustand/userDraftStore";
 
 export default function UserForm() {
-
   const dispatch = useDispatch<AppDispatch>();
 
   // Zustand
@@ -51,7 +50,6 @@ export default function UserForm() {
 
       // clear zustand draft
       clearDraft();
-
     } catch (error) {
       console.error(error);
       alert("Error adding user");
@@ -69,32 +67,44 @@ export default function UserForm() {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <Label>First Name</Label>
-              <Input name="first_name" value={form.first_name} onChange={handleChange}/>
+              <Input
+                name="first_name"
+                value={form.first_name}
+                onChange={handleChange}
+              />
             </div>
 
             <div>
               <Label>Last Name</Label>
-              <Input name="last_name" value={form.last_name} onChange={handleChange}/>
+              <Input
+                name="last_name"
+                value={form.last_name}
+                onChange={handleChange}
+              />
             </div>
 
             <div>
               <Label>Email</Label>
-              <Input name="email" value={form.email} onChange={handleChange}/>
+              <Input name="email" value={form.email} onChange={handleChange} />
             </div>
 
             <div>
               <Label>Mobile</Label>
-              <Input name="mobile" value={form.mobile} onChange={handleChange}/>
+              <Input
+                name="mobile"
+                value={form.mobile}
+                onChange={handleChange}
+              />
             </div>
 
             <div>
               <Label>City</Label>
-              <Input name="city" value={form.city} onChange={handleChange}/>
+              <Input name="city" value={form.city} onChange={handleChange} />
             </div>
 
             <div>
               <Label>Age</Label>
-              <Input name="age" value={form.age} onChange={handleChange}/>
+              <Input name="age" value={form.age} onChange={handleChange} />
             </div>
 
             <Button type="submit" className="w-full">

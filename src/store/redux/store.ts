@@ -1,41 +1,26 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import { configureStore} from "@reduxjs/toolkit";
 import userReducer from "../redux/userSlice.";
+import { persistStore, persistReducer } from "redux-persist"
+import storage from "redux-persist/lib/storage";
+import { combineReducers } from "redux";
 
 const rootReducer = combineReducers({
-  user: userReducer,
-});
+    user : userReducer,
+})
 
-// load from localStorage
-const loadState = () => {
-  if (typeof window === "undefined") return undefined;
-
-  try {
-    const serializedState = localStorage.getItem("reduxState");
-    if (!serializedState) return undefined;
-
-    return JSON.parse(serializedState);
-  } catch {
-    return undefined;
-  }
+const persistConfig = {
+    key : "root",
+    storage,
+    whitelist: ["user"],
 };
 
-// save to localStorage
-const saveState = (state: unknown) => {
-  if (typeof window === "undefined") return;
-
-  try {
-    localStorage.setItem("reduxState", JSON.stringify(state));
-  } catch {}
-};
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-  reducer: rootReducer,
-  preloadedState: loadState(),
-});
+    reducer: persistedReducer,
+})
 
-store.subscribe(() => {
-  saveState(store.getState());
-});
+export const persistor = persistStore(store);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

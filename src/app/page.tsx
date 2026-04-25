@@ -1,15 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import UserForm from "@/components/UserForm";
+import UserForm from "@/components/forms/UserForm";
 import ReduxViewer from "@/store/redux/ReduxViewer";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-black flex justify-center px-4 py-10 overflow-x-hidden">
-      
       <div className="w-full max-w-5xl flex flex-col items-center gap-8">
-
         {/* Title */}
         <h1 className="text-3xl font-bold text-black dark:text-white text-center">
           Enter the User Details to Store
@@ -27,7 +25,6 @@ export default function Home() {
 
         {/* MAIN CARD */}
         <main className="w-full max-w-3xl bg-white dark:bg-zinc-900 rounded-2xl shadow-md p-8 flex flex-col gap-8">
-
           {/* LOGO */}
           <div className="flex justify-center">
             <Image
@@ -54,19 +51,25 @@ export default function Home() {
             </h1>
 
             <p className="text-sm text-zinc-600 dark:text-zinc-400">
-              Looking for a starting point or more instructions? Head over to Templates or Learning center.
+              Looking for a starting point or more instructions? Head over to
+              Templates or Learning center.
             </p>
           </div>
 
           {/* ACTIONS */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-
             <a
               className="flex items-center justify-center gap-2 rounded-full bg-black text-white px-6 py-3 hover:bg-zinc-800 transition"
               href="https://vercel.com/new"
               target="_blank"
             >
-              <Image src="/vercel.svg" alt="Vercel" width={16} height={16} className="invert" />
+              <Image
+                src="/vercel.svg"
+                alt="Vercel"
+                width={16}
+                height={16}
+                className="invert"
+              />
               Deploy Now
             </a>
 
@@ -77,9 +80,7 @@ export default function Home() {
             >
               Documentation
             </a>
-
           </div>
-
         </main>
       </div>
     </div>
