@@ -53,8 +53,11 @@ export default function ReduxViewer() {
               </CardHeader>
 
               <CardContent>
-                <p>{user.email}</p>
-                <p>{user.city}</p>
+         
+                  <p><b>Email:</b> {user.email}</p>
+                <p><b>Mobile:</b> {user.mobile}</p>
+                <p><b>City:</b> {user.city}</p>
+                <p><b>Age:</b> {user.age}</p>
               </CardContent>
             </Card>
           ))}
