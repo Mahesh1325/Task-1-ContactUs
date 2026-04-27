@@ -13,12 +13,21 @@ export default function Home() {
           Enter the User Details to Store
         </h1>
 
-        {/* FORM (smaller width) */}
+ 
         <div className="w-full max-w-md">
           <UserForm />
         </div>
 
-        {/* REDUX VIEW BUTTON CENTER */}
+        <div className="flex justify-center">
+        <Link href="/users">
+          <Button>
+            View Users Table
+          </Button>
+        </Link>
+      </div>
+
+
+    
         <div className="w-full flex justify-center">
           <ReduxViewer />
         </div>
@@ -37,14 +46,14 @@ export default function Home() {
             />
           </div>
 
-          {/* CONTACT BUTTON */}
+        
           <div className="flex justify-center">
             <Link href="/contact">
               <Button>Go to Contact Page</Button>
             </Link>
           </div>
 
-          {/* TEXT */}
+     
           <div className="text-center space-y-4">
             <h1 className="text-2xl font-semibold text-black dark:text-white">
               To get started, edit the page.tsx file.
