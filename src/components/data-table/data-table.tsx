@@ -10,9 +10,11 @@ import {
   Row,
   ColumnFiltersState,
   TableMeta,
+  PaginationState,
 } from "@tanstack/react-table";
 
 import { useState } from "react";
+
 import { DataTableToolbar } from "./toolbar";
 import { DataTablePagination } from "./pagination";
 import { DummyUser } from "@/models/dummyUser";
@@ -29,6 +31,10 @@ type Props = {
 
 export function DataTable({ data, columns, deleteRows }: Props) {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [pagination, setPagination] = useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 5,
+  });
 
   const table = useReactTable<DummyUser>({
     data,
@@ -36,9 +42,11 @@ export function DataTable({ data, columns, deleteRows }: Props) {
 
     state: {
       columnFilters,
+      pagination,
     },
 
     onColumnFiltersChange: setColumnFilters,
+    onPaginationChange: setPagination,
 
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
