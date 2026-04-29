@@ -1,4 +1,4 @@
-import { FieldErrors, UseFormRegister, FieldValues } from "react-hook-form";
+import { FieldErrors, UseFormRegister, FieldValues,UseFormSetValue } from "react-hook-form";
 
 export type FieldType = 
     | "text"
@@ -47,5 +47,6 @@ export type FormConfig = FormField[];
 export interface InputProps<T extends FieldValues = FieldValues> {
   field: FormField;
   register: UseFormRegister<T>;
+  setValue?: UseFormSetValue<T>;
   error?: FieldErrors<T>[string];
 }

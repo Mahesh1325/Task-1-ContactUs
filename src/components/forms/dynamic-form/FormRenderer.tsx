@@ -1,42 +1,58 @@
 "use client";
 
-import {
-  useForm,
-  FieldValues,
-  Resolver,
-} from "react-hook-form";
+import { useState } from "react";
+import { useForm, FieldValues } from "react-hook-form";
 
 import { formRegistry } from "./formRegistry";
 import { FormConfig } from "./formTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ZodTypeAny } from "zod";
 
-interface FormRendererProps<T extends FieldValues> {
+interface FormRendererProps {
   config: FormConfig;
   schema?: ZodTypeAny;
-  onSubmit: (data: T) => void;
+  onSubmit: (data: FieldValues) => void;
 }
 
-export default function FormRenderer<T extends FieldValues>({
+export default function FormRenderer({
   config,
   schema,
   onSubmit,
-}: FormRendererProps<T>) {
+}: FormRendererProps) {
+  const [success, setSuccess] = useState(false);
 
-  const resolver = schema
-    ? zodResolver(schema)
-    : undefined;
+  const resolver = schema ? zodResolver(schema as any) : undefined;
 
   const {
     register,
     handleSubmit,
+    setValue, 
     formState: { errors },
-  } = useForm<T>({
-    resolver: resolver as Resolver<T> | undefined,
+  } = useForm({
+    resolver,
   });
 
+  const handleFormSubmit = (data: FieldValues) => {
+    onSubmit(data);
+
+    setSuccess(true);
+
+    setTimeout(() => {
+      setSuccess(false);
+    }, 3000);
+  };
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+    <form
+      onSubmit={handleSubmit(handleFormSubmit)}
+      className="space-y-4"
+    >
+      {success && (
+        <div className="bg-green-100 text-green-700 p-3 rounded">
+          Form submitted successfully
+        </div>
+      )}
+
       {config.map((field) => {
         const Component = formRegistry[field.type];
 
@@ -47,6 +63,7 @@ export default function FormRenderer<T extends FieldValues>({
             key={field.name}
             field={field}
             register={register}
+            setValue={setValue}  
             error={errors[field.name]}
           />
         );

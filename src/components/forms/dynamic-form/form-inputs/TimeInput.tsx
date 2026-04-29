@@ -16,7 +16,7 @@ export default function TimeInput<T extends FieldValues>({
         className="border p-2 w-full"
       />
 
-      {error && <p className="text-red-500 text-sm">{error.message}</p>}
+      {error && <p className="text-red-500 text-sm">{String(error.message)}</p>}
     </div>
   );
 }
