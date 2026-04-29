@@ -1,9 +1,9 @@
 "use client";
 
-import { Input } from "../ui/input";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-import { Label } from "../ui/label";
-import { Button } from "../ui/button";
+import { Input } from "../../ui/input";
+import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card";
+import { Label } from "../../ui/label";
+import { Button } from "../../ui/button";
 import { createUser } from "@/lib/api/user";
 import { useDispatch } from "react-redux";
 import { addUser } from "@/store/redux/userSlice.";
