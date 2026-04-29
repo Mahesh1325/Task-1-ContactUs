@@ -7,7 +7,7 @@ import { formSchema } from "@/components/forms/dynamic-form/formSchema";
 export default function ValidationPage() {
   return (
     <div className="max-w-xl mx-auto mt-10">
-      <h1 className="text-2xl font-bold mb-6">
+      <h1 className="flex justify-center text-2xl  font-bold mb-6">
         Dynamic Validation Form
       </h1>
 
